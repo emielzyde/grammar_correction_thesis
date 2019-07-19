@@ -22,3 +22,8 @@ To generate artificial data using the encoder-decoder model, follow these steps:
 2.	Once this model has been run, one should run one of the scripts in the seq2seq repository for generating artificial data (e.g. s2s-generation-fce-am.sh). Choose the script according to the type of data augmentation strategy that you want to use. 
 3.	Having generated the data, run the tsvutils.py file in the utils folder. Change the file name to the name of the file containing the generated data. This function will output labelled data. 
 4.	Run the experiment.py file in the sequence-labeler repository. Modify the file names and hyperparameters in the configuration file as needed. 
+
+## Notebooks ##
+
+Various notebooks which were used to execute the code in the Google Colaboratory environment are included in this folder.
+
