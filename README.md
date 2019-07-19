@@ -9,7 +9,7 @@ This repository contains forks of several other repositories, including:
 
 All licences, terms and conditions from these repositories apply. 
 
-Changes have been made to the code in these repositories. A detailed list of the changes implemented can be found in the modifications.txt file. This file covers all of the major code changes which were made. 
+Changes have been made to the code in these repositories. A detailed list of the changes implemented can be found in the modifications.md file. This file covers all of the major code changes which were made. 
 
 ## Data ## 
 
