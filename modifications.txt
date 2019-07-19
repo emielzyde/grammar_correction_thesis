@@ -1,0 +1,10 @@
+helper.py (in seq2seq - contrib - seq2seq) 
+	Added in annealed temperature sampling to ‘sample’ function
+
+utils_new.py (in wronging - utils)
+	Added in a bunch of intermediate metrics (e.g. GLEU, average # of incorrect tokens, etc…)
+	Added in ability to specify the desired percentage of erorrs (rather than just the min and max number) 
+
+beam_search.py (in wronging - seq2seq - seq2seq - inference)
+	Modified the ‘hyp.score’ function to add all of the noising schemes from the Xie et al. paper (from Stanford), namely random, rank and top noising
+	Hyperparameters will have to be tuned for this 
