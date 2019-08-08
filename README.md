@@ -26,5 +26,8 @@ To generate artificial data using the encoder-decoder model, follow these steps:
 
 ## Notebooks ##
 
-Various notebooks which were used to execute the code in the Google Colaboratory environment are included in this folder. 
+Various notebooks which were used to execute the code in the Google Colaboratory environment are included in this folder:
+1.	Label_Runner - runs the full error detection model
+2. 	Label_Generator - runs the label generation code (generates labels for a specified data-set from a specified pre-trained model)
+3.	RelGAN_Runner - runs the RelGAN code 
 

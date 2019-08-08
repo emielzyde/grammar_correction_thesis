@@ -451,7 +451,7 @@ def beam_search_wrapper_sample():
     keep_beams = 3
     min_num_errors = 0
     max_num_errors = 5
-    duplicates = True
+    remove_duplicates = True
     shuffle = True
     overwrite = True
     remove_number = False
