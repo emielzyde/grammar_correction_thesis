@@ -14,8 +14,35 @@ tsvutils.py (in wronging - utils)
 
 ## Own files ## 
 
-queryGoogle.py
-1.	Used to query the Google Translate API. Before this file can be run, a console project and private key have to be set up (https://cloud.google.com/translate/docs/quickstart) 
+beam_search.py - Own implementation of vanilla beam search 
 
-xmlReader.py
-1.	Used to read the XML data from the FCE dataset, to extract relevant attributes from this data 
+combined_labels.py - Used to combine labels from self-training and heuristic labelling approaches. 
+
+denoising_model.py - Initial implementation of the demonising model using a bi-directional LSTM architecture. This was later replaced by using the sequence-labeler repository. 
+
+dropout_training.py - Used to implement consensus and majority vote on a range of self-trained models 
+
+f_score.py - Calculates precision, recall and F-scores
+
+gan_analysis.py - Implements a variety of metrics to measure the quality of the generated GAN data
+
+gan_preprocess.py - Data pre-processing before data can be used to train GAN model
+
+gpt_reader.py - Processes the GPT-2 generated samples
+
+lang8_extractor.py - Extracts clean and noisy sentences from the Lang-8 dataset
+
+noising_model.py - Initial implementation of encoder-decoder model. This was later replaced by using the seq2seq repository.
+
+preprocess.py - Data pre-processing utilities used in denoising_model.py and noising_model.py 
+
+queryGoogle.py - Used to query the Google Translate API. Before this file can be run, a console project and private key have to be set up (https://cloud.google.com/translate/docs/quickstart) 
+
+xmlReader.py - Used to read the XML data from the FCE dataset, to extract relevant attributes from this data 
+
+
+
+
+
+
+
