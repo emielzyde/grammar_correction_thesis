@@ -23,7 +23,7 @@ tsvutils.py
 1.	Added intermediate metrics to analyse the data (e.g. average number of incorrect tokens, percentage of incorrect tokens, corplus GLEU)
 2.	Added in ability to specify the desired percentage of errors (rather than just the minimum and maximum number of errors) 
 
-## Own files ## 
+## own_files ## 
 
 beam_search.py - Own implementation of vanilla beam search 
 
