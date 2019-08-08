@@ -47,18 +47,16 @@ class SequenceLabelingEvaluator(object):
 
     def append_data_labelling(self, cost, batch, predicted_labels, remove_list):
         sentence_counter = 0
-        gold_labels = []
         self.cost_sum += cost
         for i in range(len(batch)):
             if i in remove_list:
-              continue
+                continue
             sentence_counter += 1 
             for j in range(len(batch[i])):
                 token = batch[i][j][0]
                 gold_label = batch[i][j][-1]
-                gold_labels.append(gold_label)
                 predicted_label = self.id2label[predicted_labels[i][j]]
-
+        
                 self.token_count += 1
                 if gold_label == predicted_label:
                     self.correct_sum += 1
@@ -70,38 +68,12 @@ class SequenceLabelingEvaluator(object):
                     self.main_correct_count += 1
                 if predicted_label == 'i':
                     self.incorrect_counter += 1 
-                    
-                if predicted_label != gold_label: #if a mistake has been made
-                  length_sent = len(batch[i])
-                  self.len_holder.append(length_sent)
-                  #self.average_len += (length_sent -self.average_len)/len(self.len_holder)
-                 
-                  #if self.id2label[predicted_labels[i][j-1]] == 1 or self.id2label[predicted_labels[i][j+1]] == 1:
-                  #  self.error_holder.append(1)
-                  #else:
-                  #  self.error_holder.append(0)
-                  #self.average_error += (1 - self.average_error)/len(self.error_holder)
-                   
-                elif predicted_label == gold_label:
-                  length_sent = len(batch[i])
-                  self.correct_len_holder.append(length_sent)
-                 
-                  #if self.id2label[predicted_labels[i][j-1]] == 1 or self.id2label[predicted_labels[i][j+1]] == 1:
-                  #  self.correct_error_holder.append(1)
-                  #else:
-                  #  self.correct_error_holder.append(0)
-
-                self.conll_format.append(token + "\t" + gold_label + "\t" + predicted_label)
-                #self.return_tokens.append(token)
-                #self.return_labels.append(predicted_label)
+        
                 self.return_data.append(token + "\t" + predicted_label)
-          
-
-            self.conll_format.append("")
+                  
             self.return_data.append("")
-            
-        return self.return_data, self.incorrect_counter, gold_labels, self.len_holder, self.error_holder, self.correct_len_holder, self.correct_error_holder, sentence_counter
-
+                    
+        return self.return_data, self.incorrect_counter, sentence_counter
 
     def get_results(self, name):
         p = (float(self.main_correct_count) / float(self.main_predicted_count)) if (self.main_predicted_count > 0) else 0.0

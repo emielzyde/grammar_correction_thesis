@@ -130,16 +130,10 @@ def create_batches_of_sentence_ids(sentences, batch_equal_size, max_batch_size):
             batches_of_sentence_ids.append(current_batch)
     return batches_of_sentence_ids
 
-def process_sentences_labelling(data, labeler, is_training, learningrate, config, name, ReturnData = False, plotROC = False, thresholding = False, threshold = None):
+def process_sentences_labelling(data, labeler, is_training, learningrate, config, name, ReturnData = False):
     """
     Process all the sentences with the labeler, return evaluation metrics.
     """
-    overall_probs = []
-    overall_gold_labels = []
-    overall_len = []
-    overall_error = []
-    correct_overall_len = []
-    correct_overall_error = []
     overall_sent_count = 0
     evaluator = SequenceLabelingEvaluator(config["main_label"], labeler.label2id, config["conll_eval"])
     batches_of_sentence_ids = create_batches_of_sentence_ids(data, config["batch_equal_size"], config["max_batch_size"])
@@ -148,61 +142,21 @@ def process_sentences_labelling(data, labeler, is_training, learningrate, config
 
     for sentence_ids_in_batch in batches_of_sentence_ids:
         batch = [data[i] for i in sentence_ids_in_batch]
-        
-        if not thresholding:
-          cost, predicted_labels, predicted_probs, remove_list = labeler.process_batch_labelling(batch, is_training, learningrate)
-        #else:
-        #  print('Applying different threshold')
-        #  cost, predicted_labels, predicted_probs = labeler.process_batch(batch, is_training, learningrate, threshold_val = threshold)
+        cost, predicted_labels, predicted_probs, remove_list = labeler.process_batch_labelling(batch, is_training, learningrate)
 
-        processed_data, incorrect_counter, gold_labels, len_holder, err_holder, corr_len_holder, corr_err_holder, sents = evaluator.append_data_labelling(cost, batch, predicted_labels, remove_list)
-        overall_len += len_holder
-        overall_error += err_holder 
-        correct_overall_len += corr_len_holder
-        correct_overall_error += corr_err_holder 
-        overall_sent_count += sents
-        probber = []
-        for item in predicted_probs:
-          for it in item:
-            probber.append(it[1])
-            
-        for lab in gold_labels:
-          if lab == 'c':
-            overall_gold_labels.append(0)
-          elif lab == 'i':
-            overall_gold_labels.append(1)
-          else:
-            print('Only two types possible')
+        processed_data, incorrect_counter, sentence_counter = evaluator.append_data_labelling(cost, batch, predicted_labels, remove_list)
+        overall_sent_count += sentence_counter 
         
-        overall_probs += probber
-        #overall_gold_labels += gold_labels
-
         word_ids, char_ids, char_mask, label_ids = None, None, None, None
         while config["garbage_collection"] == True and gc.collect() > 0:
             pass
 
-    #average_len = sum(overall_len)/len(overall_len)
-    #average_error = sum(overall_error)/len(overall_error)
-    #average_corr_len = sum(correct_overall_len)/len(correct_overall_len)
-    #average_corr_err = sum(correct_overall_error)/len(correct_overall_error)
-    
-    #print('Average incorrect length: ', average_len)
-    #print('Average incorrect error: ', average_error)
-    #print('Average correct length: ', average_corr_len)
-    #print('Average correct error: ', average_corr_err)
-    
     results = evaluator.get_results(name)
     for key in results:
         print(key + ": " + str(results[key]))
         
     if ReturnData:
-      return results, processed_data, incorrect_counter, overall_sent_count 
-    
-    if plotROC:
-      best_threshold, best_val = getROCcurve(overall_probs, overall_gold_labels)
-      
-    if plotROC:
-      return results, best_threshold, best_val
+      return results, processed_data, incorrect_counter, overall_sent_count
 
     return results
 

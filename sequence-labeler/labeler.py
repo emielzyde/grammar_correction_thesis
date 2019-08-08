@@ -404,44 +404,58 @@ class SequenceLabeler(object):
                 predicted_labels.append(viterbi_seq[:sentence_length])
                 predicted_probs.append(viterbi_trellis[:sentence_length])
         else:
-            #NEW METHOD 
-            threshold_val = 60
-            print('Threshold value is ', threshold_val)
-            cost, predicted_labels_, predicted_probs_ = self.session.run([self.loss, self.predictions, self.probabilities] + ([self.train_op] if is_training == True else []), feed_dict=feed_dict)[:3]
+          
+            ### ORIGINAL METHOD ### 
             
-            #print(predicted_probs_)
-            #copier = predicted_probs_.copy()
-            #for item in predicted_probs_:
-            #for item in copier:
-            #  for it in item:
-            #  if it[0] > threshold_val/100 or it[1] > threshold_val/100:
-            #    predicted_probs_.remove(item)
-            #      it[1] = 1 if it[1] > threshold_val/100 else 0 
-                  
-
-            #predicted_labels_ = np.argmax(np.array(predicted_probs_), 2)
-            remove_list = []
-            appender = True 
+            cost, predicted_labels_, predicted_probs_ = self.session.run([self.loss, self.predictions, self.probabilities] + ([self.train_op] if is_training == True else []), feed_dict=feed_dict)[:3]
             predicted_labels = []
             predicted_probs = []
+            remove_list = []
             for i in range(len(batch)):
-                  sentence_length = len(batch[i])
-                  predicted_probber= predicted_probs_[i][:sentence_length]
-                  for j in range(len(predicted_probber)):
-                    #print(predicted_probber[j]) 
-                    vals = predicted_probber[j]
-                    if vals[0] < threshold_val/100 and vals[1] < threshold_val/100:
-                      appender = False
-                  if appender:
-                    #print('Added')
-                    predicted_labels.append(predicted_labels_[i][:sentence_length])
-                    predicted_probs.append(predicted_probs_[i][:sentence_length])
-                  else:
-                    predicted_labels.append(predicted_labels_[i][:sentence_length])
-                    predicted_probs.append(predicted_probs_[i][:sentence_length])
-                    remove_list.append(i)
-                    #print(i)
-                  appender = True 
+                sentence_length = len(batch[i])
+                predicted_labels.append(predicted_labels_[i][:sentence_length])
+                predicted_probs.append(predicted_probs_[i][:sentence_length])
+            
+            ### METHOD 1 ###
+            
+            #threshold_val_2 = 60
+            #remove_list = []
+            #cost, predicted_labels_, predicted_probs_ = self.session.run([self.loss, self.predictions, self.probabilities] + ([self.train_op] if is_training == True else []), feed_dict=feed_dict)[:3]
+            #predicted_labels = []
+            #predicted_probs = []
+            #for item in predicted_probs_:
+            #  for it in item:
+            #      it[1] = 1 if it[1] > threshold_val_2/100 else 0 
+            #predicted_labels_ = np.argmax(np.array(predicted_probs_), 2)  
+
+            #for i in range(len(batch)):
+            #    sentence_length = len(batch[i])
+            #    predicted_labels.append(predicted_labels_[i][:sentence_length])
+            #    predicted_probs.append(predicted_probs_[i][:sentence_length])
+            
+            ###  METHOD 2 ###
+            
+            #threshold_val = 70
+            #cost, predicted_labels_, predicted_probs_ = self.session.run([self.loss, self.predictions, self.probabilities] + ([self.train_op] if is_training == True else []), feed_dict=feed_dict)[:3]
+            #remove_list = []
+            #appender = True 
+            #predicted_labels = []
+            #predicted_probs = []
+            #for i in range(len(batch)):
+            #      sentence_length = len(batch[i])
+            #      predicted_probber= predicted_probs_[i][:sentence_length]
+            #      for j in range(len(predicted_probber)):
+            #        vals = predicted_probber[j]
+            #        if vals[0] < threshold_val/100 and vals[1] < threshold_val/100:
+            #          appender = False
+            #      if appender:
+            #        predicted_labels.append(predicted_labels_[i][:sentence_length])
+            #        predicted_probs.append(predicted_probs_[i][:sentence_length])
+            #      else:
+            #        predicted_labels.append(predicted_labels_[i][:sentence_length])
+            #        predicted_probs.append(predicted_probs_[i][:sentence_length])
+            #        remove_list.append(i)
+            #      appender = True 
 
         return cost, predicted_labels, predicted_probs, remove_list
 

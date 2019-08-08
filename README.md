@@ -5,7 +5,8 @@ This repository contains the code for my thesis 'Addressing the data sparsity bo
 This repository contains forks of several other repositories, including:
 1.	seq2seq - an encoder-decoder framework used for machine translation (https://github.com/marekrei/sequence-labeler)
 2.	sequence-labeler - a grammatical error detection model (https://github.com/google/seq2seq/)
-3.	RelGAN - a GAN for text generation (https://github.com/weilinie/RelGAN)
+3.	wronging - combines the above two repositories and adds in utility files (https://github.com/skasewa/wronging) 
+4.	RelGAN - a GAN for text generation (https://github.com/weilinie/RelGAN)
 
 All licences, terms and conditions from these repositories apply. 
 
@@ -25,5 +26,5 @@ To generate artificial data using the encoder-decoder model, follow these steps:
 
 ## Notebooks ##
 
-Various notebooks which were used to execute the code in the Google Colaboratory environment are included in this folder.
+Various notebooks which were used to execute the code in the Google Colaboratory environment are included in this folder. 
 

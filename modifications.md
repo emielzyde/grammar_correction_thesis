@@ -8,7 +8,18 @@ beam_search.py (in seq2seq - seq2seq - inference)
 
 ## sequence-labeler ##
 
-tsvutils.py (in wronging - utils)
+experiment.py 
+1. 	Added in functionality to label a specified dataset based on a pre-trained model (through get_labels and process_sentences_labelling functions)
+
+labeler.py
+1. 	Added in functionality to label a specified dataset based on a pre-trained model (though process_batch_labelling function). 3 different methods are included for various types of labelling.
+
+evaluator.py
+1.	Added in functionality to label a specified dataset based on a pre-trained model (through append_data_labelling function) 
+
+## wronging ## 
+
+tsvutils.py (in utils)
 1.	Added intermediate metrics to analyse the data (e.g. average number of incorrect tokens, percentage of incorrect tokens, corplus GLEU)
 2.	Added in ability to specify the desired percentage of errors (rather than just the minimum and maximum number of errors) 
 
@@ -27,6 +38,8 @@ f_score.py - Calculates precision, recall and F-scores
 gan_analysis.py - Implements a variety of metrics to measure the quality of the generated GAN data
 
 gan_preprocess.py - Data pre-processing before data can be used to train GAN model
+
+getROC.py - Calculates and plots an ROC curve and performs a threshold search 
 
 gpt_reader.py - Processes the GPT-2 generated samples
 
