@@ -23,6 +23,19 @@ tsvutils.py
 1.	Added intermediate metrics to analyse the data (e.g. average number of incorrect tokens, percentage of incorrect tokens, corplus GLEU)
 2.	Added in ability to specify the desired percentage of errors (rather than just the minimum and maximum number of errors) 
 
+## probabilistic_nlg ##
+
+det_wae.py (in snli - wae-det) 
+1.	Added in the ability to add a one-hot encoded label to the latent space representation (which is needed for the conditional WAE)
+2.	Modified the training, monitoring and sampling functions to be compatible with different input and output datasets and the addition of the one-hot encoded label 
+
+train.py (in snli - wae-det)
+1.	Modified code to allow for different input and output datasets and changed tokenisation process 
+
+utils.py
+1.	Added get_dict function which generates a word index from a specified dataset
+2.	Changed tokenize_sequence function to label sequences according to word index from get_dict function. This means that the word index can be generated from a fixed dataset and used to label a range of datasets (according to this index), which was not previously possible.  	
+
 ## own_files ## 
 
 beam_search.py - Own implementation of vanilla beam search 
