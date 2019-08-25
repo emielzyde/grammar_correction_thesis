@@ -194,7 +194,6 @@ def get_labels(config_path, load_path):
 
     #Label the data in the 'label_path' section 
     if config["path_label"] is not None:
-        i = 0
         for path_test in config["path_label"].strip().split(":"):
             data_test = read_input_files(path_test)
             results_test, processed_data, incorrect_counter, sent_count = process_sentences_labelling(data_test, labeler, is_training=False, learningrate=0.0, config=config, name="test"+str(i), ReturnData = True)
@@ -204,8 +203,7 @@ def get_labels(config_path, load_path):
             evaluator_file.close()
             print('Number of incorrect tokens: ', incorrect_counter)
             print('Number of sentences: ', sent_count)
-            i += 1
-    
+
 def run_experiment(config_path):
     config = parse_config("config", config_path)
     temp_model_path = config_path + ".model"

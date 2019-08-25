@@ -7,12 +7,14 @@ This repository contains forks of several other repositories, including:
 2.	sequence-labeler - a grammatical error detection model (https://github.com/google/seq2seq/)
 3.	wronging - combines the above two repositories and adds in utility files (https://github.com/skasewa/wronging) 
 4.	RelGAN - implements a GAN for text generation (https://github.com/weilinie/RelGAN)
-5.	probabilistic_nlg - implements the Wasserstein auto encoder (WAE) 
+5.	probabilistic_nlg - implements the Wasserstein auto encoder (https://github.com/HareeshBahuleyan/probabilistic_nlg) 
+6.	gpt-2-simple - allows us to retrain GPT-2 on new data (https://github.com/minimaxir/gpt-2-simple)
+
 All licences, terms and conditions from these repositories apply. 
 
 Changes have been made to the code in these repositories. A detailed list of the changes implemented can be found in the modifications.md file. This file covers all of the major code changes which were made. 
 
-The folder labelled 'own_files' contains all the supplemental code which was written for the project. The purpose of each file in this folder has been described in the modifications.md file. 
+The folder labelled 'own_files' contains all of my own code which was written for the project. The purpose of each file in this folder has been described in the modifications.md file. 
 
 
 ## Data ## 

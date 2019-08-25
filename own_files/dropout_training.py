@@ -1,19 +1,19 @@
 import os
 
-def process_files_consensus(path_list, num_paths = 2):
+def process_files_consensus(path_list):
+    num_paths = len(path_list)
+    assert num_paths == 25, 'Should have 25 files'
     data_lister = []
     for i in range(len(path_list)):
         input_file = os.path.join(path_list[i])
         with open(input_file, 'r') as f:
             data = f.readlines()
-        # Remove newline characters
         data = [s.strip() for s in data]
-        # Remove tabs
         data = [s.split("\t") for s in data]
         data_lister.append(data)
 
     #Set up lists of the sentences and corrections
-    writer = open('/Users/emielzyde/Downloads/dropout_writer.txt', 'w')
+    writer = open('/Users/emielzyde/Downloads/wae_new_consensus_25.tsv', 'w')
     wait_till_space = False
     data_sourcer = data_lister[0]
 
@@ -22,7 +22,6 @@ def process_files_consensus(path_list, num_paths = 2):
     sentence_holder = []
 
     for i in range(len(data_sourcer)):
-
         for j in range(len(data_lister)):
             lister = data_lister[j]
             item = lister[i]
@@ -63,20 +62,21 @@ def process_files_consensus(path_list, num_paths = 2):
 
     writer.close()
 
-def process_files(path_list):
+def process_files_majority(path_list):
+    num_paths = len(path_list)
+    assert num_paths == 25, 'Should have 25 files'
+
     data_lister = []
     for i in range(len(path_list)):
         input_file = os.path.join(path_list[i])
         with open(input_file, 'r') as f:
             data = f.readlines()
-        # Remove newline characters
         data = [s.strip() for s in data]
-        # Remove tabs
         data = [s.split("\t") for s in data]
         data_lister.append(data)
 
     #Set up lists of the sentences and corrections
-    writer = open('/Users/emielzyde/Downloads/dropout_writer.txt', 'w')
+    writer = open('/Users/emielzyde/Downloads/wae_new_majority_25.tsv', 'w')
     writer_ind = True
     data_sourcer = data_lister[0]
     for i in range(len(data_sourcer)):
@@ -99,15 +99,20 @@ def process_files(path_list):
 
         #Majority vote
         if writer_ind:
-            if sum(correction_holder)/len(correction_holder) > 0.5:
+            if sum(correction_holder)/len(correction_holder) >= 0.5:
                 writer.write(item[0] + "\t" + "i" + "\n")
             else:
                 writer.write(item[0] + "\t" + "c" + "\n")
         writer_ind = True
 
     writer.close()
-if __name__ == '__main__':
 
-    path_list = ['/Users/emielzyde/Desktop/Datasets/japanese_normal.tsv', '/Users/emielzyde/Desktop/Datasets/japanese_normal_2.tsv']
+if __name__ == '__main__':
+    path_list = []
+    for i in range(1,26):
+        path = '/Users/emielzyde/Downloads/Dropout WAE/wae_new_labelled_' + str(i) + '.tsv'
+        path_list.append(path)
+
+    #process_files_majority(path_list)
     process_files_consensus(path_list)
 

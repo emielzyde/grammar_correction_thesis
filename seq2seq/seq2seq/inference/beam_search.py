@@ -131,14 +131,12 @@ def hyp_score(log_probs, sequence_lengths, config):
   """Calculates scores for beam search hypotheses.
   """
 
-  ###FIX_ME - SHOULD LOOK INTO ADDING PENALTIES BEFORE AND AFTER THE LENGTH PENALTY IS APPLIED 
+  ### RANDOM NOISING (don't make beta_1 too large - starts making no sense) ###
+  beta_1 = 5 #hyperparameter - need to tune this 
+  random_nums = tf.random_uniform([tf.shape(log_probs)[0], tf.shape(log_probs)[1]])
+  log_probs_augmented = log_probs + beta_1 * random_nums
 
-  ### RANDOM NOISING (tested - works, don't make beta_1 too large - starts making no sense) ###
-  #beta_1 = 5 #hyperparameter - need to tune this 
-  #random_nums = tf.random_uniform([tf.shape(log_probs)[0], tf.shape(log_probs)[1]])
-  #log_probs_augmented = log_probs + beta_1 * random_nums
-
-  ### TOP NOISING 1 (tested - works) ###
+  ### TOP NOISING 1 ###
   #Here, a penalty is added to the top hypothesis on every beam 
   #beta_2 = 10 #hyperparameter - need to tune this 
   #assert tf.size(tf.shape(log_probs)) == 2, 'Log probs should have dimensionality of 2'
@@ -165,7 +163,7 @@ def hyp_score(log_probs, sequence_lengths, config):
       sequence_lengths=sequence_lengths,
       penalty_factor=config.length_penalty_weight)
 
-  score = log_probs/ length_penalty_
+  score = log_probs_augmented/ length_penalty_
   return score
 
 

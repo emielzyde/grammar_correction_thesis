@@ -9,13 +9,6 @@ if __name__ == '__main__':
     for i in range(len(data)):
         splitter.append(data[i].split('\t'))
 
-    #input_file = os.path.join('/Users/emielzyde/Downloads/lang-8-en-1.0/entries.test')
-    #with open(input_file, 'r') as f:
-    #    data = f.readlines()
-
-    #for i in range(len(data)):
-    #    splitter.append(data[i].split('\t'))
-
     clean_sentences = []
     noisy_sentences = []
 
@@ -34,8 +27,6 @@ if __name__ == '__main__':
                 noisy_sentences.append(line[5].rstrip('\n'))
                 clean_sentences.append(line[4].rstrip('\n'))
                 incorrect_sentences_counter += 1
-
-
             except:
                 noisy_sentences.append(line[4].rstrip('\n'))
                 clean_sentences.append(line[4].rstrip('\n'))

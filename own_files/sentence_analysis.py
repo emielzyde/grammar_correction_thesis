@@ -28,8 +28,6 @@ def error_analysis():
     data2 = [s.split("\t") for s in data2]
     data_new = data + data2
 
-
-
     incorrect_list = []
     in_list = []
     incorrect_count = 0
@@ -80,7 +78,6 @@ def error_analysis():
     plt.rc('text', usetex=True)
     plt.rc('font', family='serif')
 
-    # Common sizes: (10, 7.5) and (12, 9)
     plt.figure(figsize=(10, 6))
 
     ax = plt.subplot(111)
@@ -138,9 +135,6 @@ def len_analysis():
     print(median_len)
     print(mean_len)
 
-
-
-    # Common sizes: (10, 7.5) and (12, 9)
     plt.figure(figsize=(10, 6))
     plt.xticks(fontsize=12)
     plt.yticks(fontsize=12)
@@ -164,9 +158,7 @@ def len_analysis():
     ax1.set_xlabel("Sentence length", fontsize=13)
 
     #ranger = [0,0.01,0.02,0.03,0.04,0.05,0.06,0.07,0.08,0.09]
-
     #ax1.plot([median_len] * len(ranger),ranger, "--", lw=1, color= tableau20[0], alpha=0.3)
-
     #ax2 = plt.subplot(122)
     #ax2.spines["top"].set_visible(False)
     #ax2.spines["right"].set_visible(False)

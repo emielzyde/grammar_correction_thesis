@@ -60,11 +60,8 @@ class Denoiser(tf.keras.Model):
 
 if __name__ == '__main__':
     input_file = os.path.join('/Users/emielzyde/Desktop/Project/grammar_correction/lang8_preprocess.pickle')
-    #input_file = os.path.join('/Users/emielzyde/Downloads/fra-eng/fra.txt')
     with open(input_file, 'rb') as f:
-        #lang_data = f.readlines()
         lang_data = pickle.load(f)
-        #lang_data = lang_data.readlines()
     new_data = [[preprocess.preprocess_sentence(w) for w in l.split('\t')] for l in lang_data[:NUM_DATA]]
 
     label_holder = []

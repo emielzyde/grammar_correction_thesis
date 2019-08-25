@@ -1,5 +1,6 @@
 import matplotlib.pyplot as plt
 import numpy as np 
+
 def getROCcurve(output, true_values):
     
     output = np.array(output)
@@ -53,16 +54,19 @@ def getROCcurve(output, true_values):
    
     best_threshold = np.argmax(f_scores)
     best_val = np.amax(f_scores)
+    
     #Now I will plot the ROC curve.
-    #x = np.linspace(0,1,100)
-    #plt.figure()
-    #plt.plot(false_pos_rate,recall)
-    #plt.plot(x,x)
-    #plt.xlabel('False postive rate')
-    #plt.ylabel('True positive rate')
-    #plt.show()
-    #area_under_curve = np.trapz(np.sort(np.squeeze(recall)), np.sort(np.squeeze(false_pos_rate)))
-    #print('The area under the curve is {}'.format(area_under_curve))
+    x = np.linspace(0,1,100)
+    plt.figure()
+    plt.plot(false_pos_rate,recall)
+    plt.plot(x,x)
+    plt.xlabel('False postive rate')
+    plt.ylabel('True positive rate')
+    plt.show()
+    
+    area_under_curve = np.trapz(np.sort(np.squeeze(recall)), np.sort(np.squeeze(false_pos_rate)))
+    print('The area under the curve is {}'.format(area_under_curve))
+
     print('Best threshold:{}, best f_05 score:{}'.format(best_threshold, best_val))
     
     return best_threshold, best_val

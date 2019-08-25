@@ -1,8 +1,7 @@
 import os
+from google.cloud import translate
 
 if __name__ == '__main__':
-    from google.cloud import translate
-
     # Instantiates a client
     translate_client = translate.Client()
 
@@ -11,14 +10,11 @@ if __name__ == '__main__':
         data = f.readlines()
 
     data= [s.strip() for s in data]
-    # The text to translate
-    text = u'Hello, world!'
-    # The target language
+    # Target language
     target = 'ja'
     print('Target: ', target)
 
     translated_texts = []
-    # Translates some text into Russian
     print('Translating')
     for i in range(len(data)):
         if i%1000 == 0:
@@ -36,7 +32,5 @@ if __name__ == '__main__':
 
     writer = open('/Users/emielzyde/Downloads/round_translation_japanese.txt', 'w')
     for i in range(len(data)):
-        #print(u'Text: {}'.format(data[i]))
-        #print(u'Translation: {}'.format(round_translated_texts[i]))
         writer.write(round_translated_texts[i] + '\n')
     writer.close()

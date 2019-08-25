@@ -23,6 +23,8 @@ class SequenceLabelingEvaluator(object):
             self.id2label[self.label2id[label]] = label
 
         self.conll_format = []
+        self.return_data = []
+        self.incorrect_counter = 0
 
     def append_data(self, cost, batch, predicted_labels):
         self.cost_sum += cost

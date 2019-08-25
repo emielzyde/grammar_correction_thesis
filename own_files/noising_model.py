@@ -42,10 +42,6 @@ class Encoder(tf.keras.Model):
 
     def call(self, input):
         embedded_inputs = self.embedding(input)
-
-        #When using a GRU (as above), the shapes of the variables below are:
-        #output = [batch_size, max_length, hidden_units]
-        #state = [batch_size, hidden_units]
         output, state = self.cell(embedded_inputs)
 
         return output, state
@@ -144,7 +140,6 @@ def decode_inference(sentence, encoder, decoder, input_word2index, output_index2
 if __name__ == '__main__':
 
     input_file = os.path.join('/Users/emielzyde/Desktop/Project/grammar_correction/lang8_preprocess.pickle')
-    #input_file = os.path.join('/Users/emielzyde/Downloads/fra-eng/fra.txt')
     with open(input_file, 'rb') as f:
         #lang_data = f.readlines()
         lang_data = pickle.load(f)
@@ -242,11 +237,3 @@ if __name__ == '__main__':
 
             #beam_output = beam_search.vanilla_beam_search_decoder('Je suis un homme', 10, encoder, decoder, input_word2index, output_word2index, output_index2word, max_length_inp)
             #print(beam_output)
-
-
-
-
-
-
-
-

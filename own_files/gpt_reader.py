@@ -2,7 +2,6 @@ import os
 import random
 
 if __name__ == '__main__':
-
     input_file = os.path.join('/Users/emielzyde/Downloads/conll_gpt_generated.txt')
     with open(input_file, 'r') as f:
         data = f.readlines()

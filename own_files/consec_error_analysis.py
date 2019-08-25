@@ -141,8 +141,6 @@ if __name__ == '__main__':
                  (148, 103, 189), (197, 176, 213), (140, 86, 75), (196, 156, 148),
                  (227, 119, 194), (247, 182, 210), (127, 127, 127), (199, 199, 199),
                  (188, 189, 34), (219, 219, 141), (23, 190, 207), (158, 218, 229)]
-
-    # Scale the RGB values to the [0, 1] range, which is the format matplotlib accepts.
     for i in range(len(tableau20)):
         r, g, b = tableau20[i]
         tableau20[i] = (r / 255., g / 255., b / 255.)
@@ -153,7 +151,6 @@ if __name__ == '__main__':
     ax.spines["bottom"].set_visible(False)
     ax.spines["right"].set_visible(False)
     ax.spines["left"].set_visible(False)
-
 
     y_plotter = [0.6, 0.65,0.7,0.75,0.8,0.85,0.9,0.95,1]
     plt.yticks(y_plotter, fontsize=8)

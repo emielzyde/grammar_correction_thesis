@@ -557,6 +557,7 @@ class SampledEmbeddingHelper(Helper):
     if self._start_tokens.get_shape().ndims != 1:
       raise ValueError("start_tokens must be a vector")
     self._batch_size = array_ops.size(start_tokens)
+    print(self._batch_size)
     if self._end_token.get_shape().ndims != 0:
       raise ValueError("end_token must be a scalar")
     self._start_inputs = self._embedding_fn(self._start_tokens)
@@ -657,55 +658,21 @@ class TempSamplingEmbeddingHelper(Helper):
     ### Original ###
     #outputs2 = math_ops.div(outputs,self.temp)
 
-    ### Annealing over time ###
-    #Subtracting the annealing parameter leads to more randomness over time
-    #Adding the annealing parameter leads to less randomness 
-    #outputs2 = math_ops.div(outputs, self.temp + self.temp_annealing * tf.cast(time, dtype = tf.float32))
-    
-    #overall_max = tf.math.reduce_max(outputs)
-    #max_values = tf.math.argmax(outputs, axis=1) 
-    #one_hot_max_values =  tf.one_hot(indices=max_values, depth=outputs.shape[1])
-    
-    #max_vals = one_hot_max_values * outputs 
-    #outputs2 = outputs - one_hot_max_values * overall_max/150
-    
-    #five_highest = tf.math.top_k(outputs, k =5)
-    #indices1 = five_highest.indices[:,0]
-    #indices2 = five_highest.indices[:,1]
-    #indices3 = five_highest.indices[:,2]
-    #array1 = tf.one_hot(indices = indices1, depth = outputs.shape[1])
-    #array2 = tf.one_hot(indices = indices2, depth = outputs.shape[1])
-    #array3 = tf.one_hot(indices = indices3, depth = outputs.shape[1])   
-    #outputs2 = math_ops.div(outputs, self.temp)
-    #outputs2 = array1 + array2 + array3
-    
-  
-    #second_highest = tf.math.top_k(outputs, k =2)
-    #third_highest = tf.math.top_k(outputs, k = 3)
-    #rel_indices = second_highest.values[:,0] - second_highest.values[:,1]
-    #rel_indices_3 = third_highest.values[:,1] - third_highest.values[:,2]
-    #rel_indices_new2 = tf.reshape(rel_indices_3, [-1,1])
-    #rel_indices_new = tf.reshape(rel_indices, [-1,1])
-    #outputs2 = outputs - rel_indices_new * one_hot_max_values/100
+    #Own method
+    max_values = tf.math.argmax(outputs, axis=1) 
+    one_hot_max_values =  tf.one_hot(indices=max_values, depth=outputs.shape[1])
+    second_highest = tf.math.top_k(outputs, k =3)
+    rel_indices = second_highest.values[:,0] - second_highest.values[:,1]
+    rel_indices_new = tf.reshape(rel_indices, [-1,1])
+    outputs2 = outputs - rel_indices_new * one_hot_max_values/3 
 
-    outputs2=  math_ops.div(outputs,self.temp)
-  
-    #print(top_values.values.shape)
-    #outputs2 = top_values.values[:3]
-    #print(outputs2.shape)
-    #rand_num = np.random.uniform()
-    #if rand_num < 0:
-    #  print('now')
-    #  sample_ids2 = math_ops.cast(math_ops.argmax(outputs, axis=-1), dtypes.int32)
-    #else:
-    #  print('hmm')
     sample_ids2 = math_ops.cast(
-          random_ops.multinomial(outputs2, 1)
+         random_ops.multinomial(outputs2, 1)
           , dtypes.int32
     )
-    
+
     sample_ids = array_ops.reshape(sample_ids2,[-1])
-          
+ 
     return sample_ids
 
   def next_inputs(self, time, outputs, state, sample_ids, name=None):

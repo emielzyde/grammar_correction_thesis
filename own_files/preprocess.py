@@ -8,7 +8,6 @@ import numpy as np
 unknown_vector = np.random.rand(300)
 start_vector = np.random.rand(300)
 end_vector = np.random.rand(300)
-
 MIN_COUNT = 0
 
 class LookupTables():
@@ -53,9 +52,6 @@ def unicode_to_ascii(s):
 
 def preprocess_sentence(w):
     w = unicode_to_ascii(w.lower().strip())
-    #w = re.sub(r"([?.!,¿])", r" \1 ", w)
-    #w = re.sub(r'[" "]+', " ", w)
-    #w = re.sub(r"[^a-zA-Z?.!,¿]+", " ", w)
     w = w.rstrip().strip()
     return w
 

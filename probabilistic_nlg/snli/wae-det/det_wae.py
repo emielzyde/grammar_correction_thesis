@@ -353,7 +353,7 @@ class DetWAEModel(object):
         with open('bleu_logs.txt', 'w') as f:
             f.write('\n'.join(self.log_str))
 
-    def train(self, input_train, input_val, output_train, output_val, label_train, label_val):
+    def train(self, input_train, input_val, output_train, output_val, label_train, label_val, checkpoint_return = False, checkpoint = None):
 
         print('[INFO] Training process started')
 
@@ -362,8 +362,12 @@ class DetWAEModel(object):
 
         with tf.Session() as sess: 
             sess.run(tf.global_variables_initializer())
-            writer = tf.summary.FileWriter(self.logs_dir, sess.graph)
+            if checkpoint_return:
+                saver = tf.train.Saver()
+                saver.restore(sess, checkpoint)
 
+            writer = tf.summary.FileWriter(self.logs_dir, sess.graph)
+            
             for epoch_i in range(1, self.epochs + 1):
 
                 start_time = time.time()

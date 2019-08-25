@@ -60,10 +60,8 @@ def vanilla_beam_search_decoder(input, beam_size, encoder, decoder, input_word2i
         live_samples_copy = live_samples.copy()
         #Now, we add the new tokens to the respective lists
         for k in range(beam_size - completed_beams):
-
             j = 0
             l = 0
-
             #Extract relevant elements
             beam, predicted_id, score, decoder_hidden_state = sequences[k][0], sequences[k][1], sequences[k][2], sequences[k][3]
             curr_sequence = live_samples_copy[beam] + [predicted_id]  # add the new prediction to current sequence

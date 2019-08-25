@@ -5,17 +5,13 @@ if __name__ == '__main__':
     input_file_1 = os.path.join('/Users/emielzyde/Desktop/Datasets/beam_ORIGINAL.tsv')
     with open(input_file_1, 'r') as f:
         data_original = f.readlines()
-    #Remove newline characters
     data_original = [s.strip() for s in data_original]
-    #Remove tabs
     data_original = [s.split("\t") for s in data_original]
 
     input_file_2 = os.path.join('/Users/emielzyde/Downloads/beam_consensus_25.tsv')
     with open(input_file_2, 'r') as f:
         data_self = f.readlines()
-    #Remove newline characters
     data_self = [s.strip() for s in data_self]
-    #Remove tabs
     data_self = [s.split("\t") for s in data_self]
 
     writer = open('/Users/emielzyde/Downloads/beam_consensus_selftrain_25.tsv', 'w')
