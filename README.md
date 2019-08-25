@@ -33,7 +33,8 @@ To generate artificial data using the encoder-decoder model, follow these steps:
 
 Various notebooks which were used to execute the code in the Google Colaboratory environment are included in this folder. References to the owners of the code are included in the notebooks. 
 1.	Label_Runner - runs the full error detection model
-2. 	Label_Generator - runs the label generation code (generates labels for a specified data-set from a specified pre-trained model)
+2. 	Label_Generator - runs the label generation code (generates labels for a specified data-set from a specified pre-trained model using self-training approaches)
 3.	RelGAN_Runner - runs the RelGAN code 
-4. 	WAE - runs the Wasserstein auto-encoder code 
+4. 	WAE_determinstic - runs the standard determinstic Wasserstein autoencoder 
+5.	WAE_conditional - runs the conditional Wasserstein autoencoder 
 
