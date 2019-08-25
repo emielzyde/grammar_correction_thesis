@@ -40,21 +40,25 @@ utils.py
 
 beam_search.py - Own implementation of vanilla beam search 
 
-combined_labels.py - Used to combine labels from self-training and heuristic labelling approaches. 
+combined_labels.py - Used to combine labels from self-training and heuristic labelling approaches (for 'Combined labels' section in report) 
+
+consec_error_analysis.py - Used to analyse how well the error detection model labels consecutive incorrect tokens 
 
 denoising_model.py - Initial implementation of the demonising model using a bi-directional LSTM architecture. This was later replaced by using the sequence-labeler repository. 
 
 dropout_training.py - Used to implement consensus and majority vote on a range of self-trained models 
 
+error_analysis.py - Used to analyse how the error detection models make errors (e.g. how often do they mislabel an incorrect token) 
+
 f_score.py - Calculates precision, recall and F-scores
 
-gan_analysis.py - Implements a variety of metrics to measure the quality of the generated GAN data
+gan_analysis.py - Implements a variety of metrics to measure the quality of the generated GAN data (e.g. soft cosine similarity). Also used for the GPT-2 and WAE models 
 
 gan_preprocess.py - Data pre-processing before data can be used to train GAN model
 
 getROC.py - Calculates and plots an ROC curve and performs a threshold search 
 
-gpt_reader.py - Processes the GPT-2 generated samples
+gpt_reader.py - Pre-processes the GPT-2 generated samples
 
 lang8_extractor.py - Extracts clean and noisy sentences from the Lang-8 dataset
 
@@ -63,6 +67,8 @@ noising_model.py - Initial implementation of encoder-decoder model. This was lat
 preprocess.py - Data pre-processing utilities used in denoising_model.py and noising_model.py 
 
 queryGoogle.py - Used to query the Google Translate API. Before this file can be run, a console project and private key have to be set up (https://cloud.google.com/translate/docs/quickstart) 
+
+sentence_analysis.py - Used to analyse the distribution of lengths and incorrect tokens in the FCE and CoNLL datasets 
 
 xmlReader.py - Used to read the XML data from the FCE dataset, to extract relevant attributes from this data 
 

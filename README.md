@@ -6,11 +6,14 @@ This repository contains forks of several other repositories, including:
 1.	seq2seq - an encoder-decoder framework used for machine translation (https://github.com/marekrei/sequence-labeler)
 2.	sequence-labeler - a grammatical error detection model (https://github.com/google/seq2seq/)
 3.	wronging - combines the above two repositories and adds in utility files (https://github.com/skasewa/wronging) 
-4.	RelGAN - a GAN for text generation (https://github.com/weilinie/RelGAN)
-
+4.	RelGAN - implements a GAN for text generation (https://github.com/weilinie/RelGAN)
+5.	probabilistic_nlg - implements the Wasserstein auto encoder (WAE) 
 All licences, terms and conditions from these repositories apply. 
 
 Changes have been made to the code in these repositories. A detailed list of the changes implemented can be found in the modifications.md file. This file covers all of the major code changes which were made. 
+
+The folder labelled 'own_files' contains all the supplemental code which was written for the project. The purpose of each file in this folder has been described in the modifications.md file. 
+
 
 ## Data ## 
 
@@ -26,7 +29,7 @@ To generate artificial data using the encoder-decoder model, follow these steps:
 
 ## Notebooks ##
 
-Various notebooks which were used to execute the code in the Google Colaboratory environment are included in this folder:
+Various notebooks which were used to execute the code in the Google Colaboratory environment are included in this folder. References to the owners of the code are included in the notebooks. 
 1.	Label_Runner - runs the full error detection model
 2. 	Label_Generator - runs the label generation code (generates labels for a specified data-set from a specified pre-trained model)
 3.	RelGAN_Runner - runs the RelGAN code 
