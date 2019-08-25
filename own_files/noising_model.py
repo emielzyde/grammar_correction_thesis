@@ -1,3 +1,8 @@
+"""
+This code is based on the implementation of a neural machine translation model with attention
+by Frank Chen (https://github.com/tensorflow/tensorflow/blob/master/tensorflow/contrib/eager/python/examples/nmt_with_attention/nmt_with_attention.ipynb)
+"""
+
 import tensorflow as tf
 tf.enable_eager_execution()
 import numpy as np

@@ -51,7 +51,7 @@ def vanilla_beam_search_decoder(input, beam_size, encoder, decoder, input_word2i
                 #Add current candidate to the list
                 candidates.append(candidate)
 
-        #Sort the list of candidates by the 3rd dimension (which contains the scores
+        #Sort the list of candidates by the 3rd dimension (which contains the scores)
         ordered_candidates = sorted(candidates, key = itemgetter(2))
 
         #Return the top k candidates (where k is the beam_size)

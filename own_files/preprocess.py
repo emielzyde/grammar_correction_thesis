@@ -1,3 +1,8 @@
+"""
+This code is based on the pre-processing code from Frank Chen's implementation of a neural machine translation model with attention
+(https://github.com/tensorflow/tensorflow/blob/master/tensorflow/contrib/eager/python/examples/nmt_with_attention/nmt_with_attention.ipynb)
+"""
+
 import os
 import re
 import unicodedata
@@ -75,7 +80,6 @@ class Preprocessor():
         self.max_target_len = max([len(sentence.split()) for sentence in self.target_data])
 
         self.finalise_dataset()
-
 
     def finalise_dataset(self):
 
