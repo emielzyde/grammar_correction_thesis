@@ -1,10 +1,10 @@
-# Addressing the data sparsity bottleneck for grammatical error detection #
+# Addressing the Data Scarcity Bottleneck for Grammatical Error Detection #
 
-This repository contains the code for my thesis 'Addressing the data sparsity bottleneck for grammatical error detection'. 
+This repository contains the code for my thesis 'Addressing the Data Scarcity Bottleneck for Grammatical Error Detection'. 
 
 This repository contains forks of several other repositories, including:
-1.	seq2seq - an encoder-decoder framework used for machine translation (https://github.com/marekrei/sequence-labeler)
-2.	sequence-labeler - a grammatical error detection model (https://github.com/google/seq2seq/)
+1.	seq2seq - an encoder-decoder framework used for machine translation (https://github.com/google/seq2seq/) 
+2.	sequence-labeler - a grammatical error detection model (https://github.com/marekrei/sequence-labeler)
 3.	wronging - combines the above two repositories and adds in utility files (https://github.com/skasewa/wronging) 
 4.	RelGAN - implements a GAN for text generation (https://github.com/weilinie/RelGAN)
 5.	probabilistic_nlg - implements the Wasserstein auto encoder (https://github.com/HareeshBahuleyan/probabilistic_nlg) 
@@ -15,7 +15,6 @@ All licences, terms and conditions from these repositories apply.
 Changes have been made to the code in these repositories. A detailed list of the changes implemented can be found in the modifications.md file. This file covers all of the major code changes which were made. 
 
 The folder labelled 'own_files' contains all of my own code which was written for the project. The purpose of each file in this folder has been described in the modifications.md file. 
-
 
 ## Data ## 
 

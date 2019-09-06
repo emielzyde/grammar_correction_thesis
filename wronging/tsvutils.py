@@ -460,7 +460,7 @@ def beam_search_wrapper_sample():
     max_percent = 3.0
 
     beam_search_txt_to_tsv_wrapper(correct_sents_file, corrupted_sents_file, output_tsv_file, beams, keep_beams,
-                                   min_num_errors, max_num_errors, duplicates, shuffle, overwrite, remove_number, remove_percentage, min_percent, max_percent)
+                                   min_num_errors, max_num_errors, remove_duplicates, shuffle, overwrite, remove_number, remove_percentage, min_percent, max_percent)
 
 
 def wrapper_sample():
